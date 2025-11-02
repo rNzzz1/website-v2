@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Портфолио - Овсеп Узунян</title>
+    <link rel="stylesheet" href="styles/modern-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">OU</div>
+                    <h1>Овсеп Узунян</h1>
+                </div>
+                <nav class="nav">
+                    <ul>
+                        <li><a href="index.html" class="nav-link active">Главная</a></li>
+                        <li><a href="pages/projects.html" class="nav-link">Проекты</a></li>
+                        <li><a href="pages/diary.html" class="nav-link">Дневник</a></li>
+                        <li><a href="pages/contacts.html" class="nav-link">Контакты</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1 class="hero-title">Привет! Я <span class="accent-text">Овсеп Узунян</span></h1>
+                        <p class="hero-subtitle">Студент группы <strong>30БО-99-99</strong></p>
+                        <p class="hero-description">Увлекаюсь веб-разработкой и создаю интересные проекты. Люблю изучать новые технологии и решать сложные задачи.</p>
+                        <div class="hero-buttons">
+                            <a href="assets/resume.pdf" class="btn btn-primary" download>
+                                <span>📄 Скачать резюме</span>
+                            </a>
+                            <a href="#projects" class="btn btn-secondary">
+                                <span>👀 Смотреть проекты</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="hero-visual">
+                        <div class="profile-card">
+                            <div class="profile-image">
+                                <img src="images/my-photo.jpg" alt="Овсеп Узунян" class="profile-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                                <div class="image-placeholder" style="display: none;">🚀</div>
+                            </div>
+                            <div class="profile-stats">
+                                <div class="stat">
+                                    <span class="stat-number">4</span>
+                                    <span class="stat-label">Проекта</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-number">2</span>
+                                    <span class="stat-label">Года опыта</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-number">8</span>
+                                    <span class="stat-label">Технологий</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="skills-section">
+            <div class="container">
+                <h2 class="section-title">Мои навыки</h2>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <span class="skill-name">HTML/CSS</span>
+                            <span class="skill-percent">90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <span class="skill-name">JavaScript</span>
+                            <span class="skill-percent">85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <span class="skill-name">React</span>
+                            <span class="skill-percent">80%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <span class="skill-name">Node.js</span>
+                            <span class="skill-percent">70%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 70%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="projects-preview">
+            <div class="container">
+                <h2 class="section-title">Лучшие проекты</h2>
+                <div class="projects-grid">
+                    <!-- Проект 1 - React E-Commerce -->
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="images/ecommerce-project.jpg" alt="React E-Commerce Store" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <div style="background: linear-gradient(135deg, #667eea, #764ba2); height: 200px; display: none; align-items: center; justify-content: center; color: white; font-size: 3rem;">
+                                🛒
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3>React E-Commerce</h3>
+                            <p>React, Commerce.js, Stripe</p>
+                            <span class="project-badge">E-commerce</span>
+                        </div>
+                    </div>
+
+                    <!-- Проект 2 - Memory Card Game -->
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="images/memory-game.jpg" alt="Memory Card Game" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <div style="background: linear-gradient(135deg, #9d50bb, #6e48aa); height: 200px; display: none; align-items: center; justify-content: center; color: white; font-size: 3rem;">
+                                🕹️
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3>Memory Card Game</h3>
+                            <p>JavaScript, CSS3, Animations</p>
+                            <span class="project-badge">Games</span>
+                        </div>
+                    </div>
+
+                    <!-- Проект 3 - Movie Search App -->
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="images/movie-app.jpg" alt="Movie Search App" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <div style="background: linear-gradient(135deg, #3494e6, #ec6ead); height: 200px; display: none; align-items: center; justify-content: center; color: white; font-size: 3rem;">
+                                🎬
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3>Movie Search App</h3>
+                            <p>React, OMDB API</p>
+                            <span class="project-badge">Movies</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <a href="pages/projects.html" class="btn btn-outline">Все проекты →</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="features-section">
+            <div class="container">
+                <h2 class="section-title">Почему выбирают меня</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">💻</div>
+                        <h3>Современные технологии</h3>
+                        <p>Использую актуальные фреймворки и инструменты для создания быстрых и надежных приложений</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📱</div>
+                        <h3>Адаптивный дизайн</h3>
+                        <p>Все проекты идеально отображаются на любых устройствах - от смартфонов до десктопов</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3>Оптимизация</h3>
+                        <p>Уделяю внимание производительности и скорости загрузки для лучшего пользовательского опыта</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="logo">
+                        <div class="logo-icon">OU</div>
+                        <h3>Овсеп Узунян</h3>
+                    </div>
+                    <p>Студент-разработчик, создающий крутые проекты</p>
+                </div>
+                <div class="footer-links">
+                    <a href="pages/contacts.html">Контакты</a>
+                    <a href="https://github.com/rNzzz1" target="_blank">GitHub</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Овсеп Узунян. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts/main.js"></script>
+
+    <style>
+        .features-section {
+            padding: 5rem 0;
+            background: var(--background-light);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: var(--background-card);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Стили для фотографии профиля */
+        .profile-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: var(--border-radius);
+            object-fit: cover;
+            border: 4px solid var(--background-card);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .feature-card {
+                padding: 1.5rem;
+            }
+
+            .profile-photo {
+                width: 150px;
+                height: 150px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .profile-photo {
+                width: 120px;
+                height: 120px;
+            }
+        }
+    </style>
+</body>
+</html>

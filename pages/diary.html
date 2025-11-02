@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дневник - Овсеп Узунян</title>
+    <link rel="stylesheet" href="../styles/modern-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">OU</div>
+                    <h1>Овсеп Узунян</h1>
+                </div>
+                <nav class="nav">
+                    <ul>
+                        <li><a href="../index.html" class="nav-link">Главная</a></li>
+                        <li><a href="projects.html" class="nav-link">Проекты</a></li>
+                        <li><a href="diary.html" class="nav-link active">Дневник</a></li>
+                        <li><a href="contacts.html" class="nav-link">Контакты</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="diary-page">
+            <div class="container">
+                <div class="page-header">
+                    <h1 class="page-title">Учебный дневник</h1>
+                    <p class="page-subtitle">Отслеживание образовательного прогресса</p>
+                </div>
+
+                <div class="diary-layout">
+                    <div class="diary-main">
+                        <h2 class="section-subtitle">Прогресс обучения</h2>
+                        
+                        <div class="timeline">
+                            <div class="timeline-item completed">
+                                <div class="timeline-date">18 дек</div>
+                                <div class="timeline-content">
+                                    <h3>Создание портфолио</h3>
+                                    <p>Завершил разработку многостраничного портфолио с адаптивным дизайном. Реализовал фильтрацию проектов и модальные окна.</p>
+                                    <span class="status-badge completed">✓ Завершено</span>
+                                </div>
+                            </div>
+
+                            <div class="timeline-item completed">
+                                <div class="timeline-date">15 дек</div>
+                                <div class="timeline-content">
+                                    <h3>Изучение React Hooks</h3>
+                                    <p>Освоил использование useState, useEffect и useContext. Создал несколько тестовых приложений для закрепления материала.</p>
+                                    <span class="status-badge completed">✓ Завершено</span>
+                                </div>
+                            </div>
+
+                            <div class="timeline-item in-progress">
+                                <div class="timeline-date">12 дек</div>
+                                <div class="timeline-content">
+                                    <h3>Работа с REST API</h3>
+                                    <p>Изучаю взаимодействие с внешними API. Практикуюсь в обработке асинхронных запросов и работе с JSON данными.</p>
+                                    <span class="status-badge in-progress">⏳ В процессе</span>
+                                </div>
+                            </div>
+
+                            <div class="timeline-item completed">
+                                <div class="timeline-date">08 дек</div>
+                                <div class="timeline-content">
+                                    <h3>Верстка адаптивных интерфейсов</h3>
+                                    <p>Научился создавать полностью адаптивные макеты с использованием CSS Grid и Flexbox. Протестировал на различных устройствах.</p>
+                                    <span class="status-badge completed">✓ Завершено</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="add-entry-section">
+                            <button class="btn btn-primary" onclick="openDiaryModal()">
+                                <span>+ Добавить запись</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="diary-sidebar">
+                        <div class="progress-card">
+                            <h3>Текущие курсы</h3>
+                            <div class="course-progress">
+                                <div class="course-item">
+                                    <div class="course-header">
+                                        <span>Frontend Разработка</span>
+                                        <span>85%</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 85%"></div>
+                                    </div>
+                                </div>
+                                <div class="course-item">
+                                    <div class="course-header">
+                                        <span>React & Redux</span>
+                                        <span>70%</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 70%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="stats-card">
+                            <h3>Статистика</h3>
+                            <div class="stats-grid">
+                                <div class="stat-item">
+                                    <div class="stat-value">3</div>
+                                    <div class="stat-label">Задач выполнено</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value">1</div>
+                                    <div class="stat-label">В процессе</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value">75%</div>
+                                    <div class="stat-label">Общий прогресс</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value">4</div>
+                                    <div class="stat-label">Проекта создано</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Модальное окно добавления записи -->
+    <div id="diaryModal" class="modal">
+        <div class="modal-content medium">
+            <span class="close-modal" onclick="closeDiaryModal()">&times;</span>
+            <h2>Добавить запись в дневник</h2>
+            <form id="diaryForm" class="diary-form">
+                <div class="form-group">
+                    <label for="entryDate">Дата</label>
+                    <input type="text" id="entryDate" name="entryDate" placeholder="Например: 20 дек" required>
+                </div>
+                <div class="form-group">
+                    <label for="entryTitle">Название задачи</label>
+                    <input type="text" id="entryTitle" name="entryTitle" placeholder="Например: Создание портфолио" required>
+                </div>
+                <div class="form-group">
+                    <label for="entryDescription">Описание</label>
+                    <textarea id="entryDescription" name="entryDescription" rows="4" placeholder="Опишите задачу или достижение..." required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="entryStatus">Статус</label>
+                    <select id="entryStatus" name="entryStatus">
+                        <option value="in-progress">⏳ В процессе</option>
+                        <option value="completed">✓ Завершено</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary full-width">Добавить запись</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="logo">
+                        <div class="logo-icon">OU</div>
+                        <h3>Овсеп Узунян</h3>
+                    </div>
+                    <p>Студент-разработчик, создающий крутые проекты</p>
+                </div>
+                <div class="footer-links">
+                    <a href="contacts.html">Контакты</a>
+                    <a href="https://github.com">GitHub</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Овсеп Узунян. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../scripts/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проекты - Овсеп Узунян</title>
+    <link rel="stylesheet" href="../styles/modern-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">OU</div>
+                    <h1>Овсеп Узунян</h1>
+                </div>
+                <nav class="nav">
+                    <ul>
+                        <li><a href="../index.html" class="nav-link">Главная</a></li>
+                        <li><a href="projects.html" class="nav-link active">Проекты</a></li>
+                        <li><a href="diary.html" class="nav-link">Дневник</a></li>
+                        <li><a href="contacts.html" class="nav-link">Контакты</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="projects-page">
+            <div class="container">
+                <div class="page-header">
+                    <h1 class="page-title">Мои проекты</h1>
+                    <p class="page-subtitle">Коллекция учебных и личных работ</p>
+                </div>
+
+                <div class="filters">
+                    <button class="filter-btn active" data-filter="all">Все проекты</button>
+                    <button class="filter-btn" data-filter="web">Веб-разработка</button>
+                    <button class="filter-btn" data-filter="js">JavaScript</button>
+                    <button class="filter-btn" data-filter="react">React</button>
+                    <button class="filter-btn" data-filter="tools">Инструменты</button>
+                </div>
+
+                <div class="projects-grid-full">
+                    <!-- Проект 1 -->
+                    <div class="project-card-full" data-category="web react">
+                        <div class="project-image">
+                            <img src="../images/ecommerce-project.jpg" alt="React E-Commerce Store" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <div class="project-image-placeholder" style="background: linear-gradient(135deg, #667eea, #764ba2); display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem;">
+                                🛒
+                            </div>
+                            <div class="project-overlay">
+                                <button class="view-details" onclick="openModal('project1')">Подробнее</button>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <h3>React E-Commerce Store</h3>
+                            <p class="project-tech">React, Commerce.js</p>
+                            <p class="project-desc">Полнофункциональный интернет-магазин с корзиной и оплатой</p>
+                            <div class="project-tags">
+                                <span class="tag">React</span>
+                                <span class="tag">E-commerce</span>
+                                <span class="tag">Stripe</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Проект 2 -->
+                    <div class="project-card-full" data-category="tools js">
+                        <div class="project-image">
+                            <img src="../images/gradient-generator.jpg" alt="CSS Gradient Generator" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <div class="project-image-placeholder" style="background: linear-gradient(135deg, #fd746c, #ff9068); display: none; align-items: center; justify-content: center; color: white; font-size: 2rem;">
+                                🎨
+                            </div>
+                            <div class="project-overlay">
+                                <button class="view-details" onclick="openModal('project2')">Подробнее</button>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <h3>CSS Gradient Generator</h3>
+                            <p class="project-tech">JavaScript, CSS3</p>
+                            <p class="project-desc">Генератор CSS градиентов с реальным предпросмотром</p>
+                            <div class="project-tags">
+                                <span class="tag">CSS</span>
+                                <span class="tag">Design</span>
+                                <span class="tag">Tools</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Проект 3 -->
+                    <div class="project-card-full" data-category="web js">
+                        <div class="project-image">
+                            <img src="../images/memory-game.jpg" alt="Memory Card Game" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <div class="project-image-placeholder" style="background: linear-gradient(135deg, #9d50bb, #6e48aa); display: none; align-items: center; justify-content: center; color: white; font-size: 2rem;">
+                                🕹️
+                            </div>
+                            <div class="project-overlay">
+                                <button class="view-details" onclick="openModal('project3')">Подробнее</button>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <h3>Memory Card Game</h3>
+                            <p class="project-tech">JavaScript, CSS3</p>
+                            <p class="project-desc">Классическая игра на память с подсчетом очков</p>
+                            <div class="project-tags">
+                                <span class="tag">Games</span>
+                                <span class="tag">Memory</span>
+                                <span class="tag">Animation</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Проект 4 -->
+                    <div class="project-card-full" data-category="react web">
+                        <div class="project-image">
+                            <img src="../images/movie-app.jpg" alt="Movie Search App" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <div class="project-image-placeholder" style="background: linear-gradient(135deg, #3494e6, #ec6ead); display: none; align-items: center; justify-content: center; color: white; font-size: 2rem;">
+                                🎬
+                            </div>
+                            <div class="project-overlay">
+                                <button class="view-details" onclick="openModal('project4')">Подробнее</button>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <h3>Movie Search App</h3>
+                            <p class="project-tech">React, OMDB API</p>
+                            <p class="project-desc">Поиск фильмов с детальной информацией и рейтингами</p>
+                            <div class="project-tags">
+                                <span class="tag">React</span>
+                                <span class="tag">API</span>
+                                <span class="tag">Movies</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Модальное окно -->
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="logo">
+                        <div class="logo-icon">OU</div>
+                        <h3>Овсеп Узунян</h3>
+                    </div>
+                    <p>Студент-разработчик, создающий крутые проекты</p>
+                </div>
+                <div class="footer-links">
+                    <a href="contacts.html">Контакты</a>
+                    <a href="https://github.com/rNzzz1" target="_blank">GitHub</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Овсеп Узунян. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Данные для проектов
+        const projectsData = {
+            project1: {
+                title: 'React E-Commerce Store',
+                category: 'React, Commerce.js',
+                description: 'Полнофункциональный интернет-магазин с системой корзины, оформления заказа и интеграцией платежей.',
+                details: 'Проект использует Commerce.js для управления продуктами и заказами, Stripe для обработки платежей. Реализована фильтрация товаров, поиск и система рейтингов.',
+                technologies: ['React', 'Commerce.js', 'Stripe', 'Material-UI', 'React Router'],
+                github: 'https://github.com/chetanverma16/react-ecommerce-template',
+                live: 'https://react-ecommerce-template.vercel.app',
+                image: '../images/ecommerce-project.jpg'
+            },
+            project2: {
+                title: 'CSS Gradient Generator',
+                category: 'JavaScript, CSS3',
+                description: 'Инструмент для создания красивых CSS градиентов с реальным предпросмотром и экспортом кода.',
+                details: 'Генерация линейных, радиальных и конических градиентов. Настройка цветов, углов и прозрачности. Экспорт готового CSS кода.',
+                technologies: ['JavaScript', 'CSS3', 'Color Picker', 'Clipboard API'],
+                github: 'https://github.com/ghosh/uiGradients',
+                live: 'https://uigradients.com',
+                image: '../images/gradient-generator.jpg'
+            },
+            project3: {
+                title: 'Memory Card Game',
+                category: 'JavaScript, CSS3',
+                description: 'Классическая игра на память с анимированными карточками и системой подсчета очков.',
+                details: 'Реализована логика совпадения карточек, таймер, система уровней сложности. Плавные анимации переворота карточек.',
+                technologies: ['JavaScript', 'CSS3', 'CSS Animations', 'Game Logic'],
+                github: 'https://github.com/taniarascia/memory',
+                live: 'https://taniarascia.github.io/memory',
+                image: '../images/memory-game.jpg'
+            },
+            project4: {
+                title: 'Movie Search App',
+                category: 'React, OMDB API',
+                description: 'Приложение для поиска фильмов с детальной информацией, трейлерами и рейтингами.',
+                details: 'Поиск по названию, актерам, жанрам. Детальные страницы с актерским составом, рецензиями и рекомендациями.',
+                technologies: ['React', 'OMDB API', 'React Router', 'Axios', 'Responsive Design'],
+                github: 'https://github.com/amirhazizi/reactjs-movies-app',
+                live: 'https://reactjs-movies-app.netlify.app',
+                image: '../images/movie-app.jpg'
+            }
+        };
+
+        function openModal(projectId) {
+            const project = projectsData[projectId];
+            const modalBody = document.getElementById('modalBody');
+
+            if (!project || !modalBody) return;
+
+            const htmlContent = `
+                <div class="modal-project-header">
+                    <h2>${project.title}</h2>
+                    <p class="project-category"><strong>Категория:</strong> ${project.category}</p>
+                </div>
+                <div class="modal-project-image">
+                    <img src="${project.image}" alt="${project.title}" onerror="this.style.display='none'">
+                </div>
+                <div class="modal-project-content">
+                    <p class="project-description">${project.description}</p>
+                    <p class="project-details"><strong>Детали реализации:</strong> ${project.details}</p>
+                    <div class="technologies-section">
+                        <strong>Использованные технологии:</strong>
+                        <div class="technologies-list">
+                            ${project.technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+                        </div>
+                    </div>
+                    <div class="project-links">
+                        <a href="${project.github}" target="_blank" class="btn btn-primary">GitHub</a>
+                        <a href="${project.live}" target="_blank" class="btn btn-secondary">Живая версия</a>
+                    </div>
+                </div>
+            `;
+
+            modalBody.innerHTML = htmlContent;
+            document.getElementById('projectModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('projectModal').style.display = 'none';
+        }
+
+        // Фильтрация проектов
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('[data-category]');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+
+                    const filterValue = this.getAttribute('data-filter');
+
+                    projectCards.forEach(card => {
+                        const categories = card.getAttribute('data-category').split(' ');
+                        if (filterValue === 'all' || categories.includes(filterValue)) {
+                            card.style.display = 'block';
+                            setTimeout(() => {
+                                card.style.opacity = '1';
+                                card.style.transform = 'scale(1)';
+                            }, 10);
+                        } else {
+                            card.style.opacity = '0';
+                            card.style.transform = 'scale(0.8)';
+                            setTimeout(() => {
+                                card.style.display = 'none';
+                            }, 300);
+                        }
+                    });
+                });
+            });
+
+            // Предзагрузка изображений
+            preloadImages();
+        });
+
+        function preloadImages() {
+            const images = [
+                '../images/ecommerce-project.jpg',
+                '../images/gradient-generator.jpg',
+                '../images/memory-game.jpg',
+                '../images/movie-app.jpg'
+            ];
+            
+            images.forEach(src => {
+                const img = new Image();
+                img.src = src;
+            });
+        }
+
+        // Закрытие модального окна
+        window.addEventListener('click', function(event) {
+            if (event.target === document.getElementById('projectModal')) {
+                closeModal();
+            }
+        });
+
+        // Стили для модального окна и изображений
+        const style = document.createElement('style');
+        style.textContent = `
+            .project-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: var(--transition);
+            }
+
+            .project-card-full:hover .project-image img {
+                transform: scale(1.05);
+            }
+
+            .modal-project-image {
+                margin: 1.5rem 0;
+                border-radius: var(--border-radius);
+                overflow: hidden;
+                max-height: 300px;
+            }
+
+            .modal-project-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .modal-project-header {
+                margin-bottom: 1rem;
+            }
+
+            .modal-project-content {
+                margin-top: 1.5rem;
+            }
+
+            .tech-tag {
+                display: inline-block;
+                background: var(--background-light);
+                color: var(--text-primary);
+                padding: 0.25rem 0.75rem;
+                border-radius: 15px;
+                font-size: 0.8rem;
+                font-weight: 500;
+                margin: 0.25rem;
+                border: 1px solid var(--border-color);
+            }
+            
+            .technologies-list {
+                margin-top: 0.5rem;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+            
+            .project-links {
+                margin-top: 1.5rem;
+                display: flex;
+                gap: 1rem;
+                flex-wrap: wrap;
+            }
+            
+            .project-category {
+                color: var(--accent-color);
+                font-weight: 600;
+                margin-bottom: 1rem;
+            }
+            
+            .project-description {
+                color: var(--text-primary);
+                line-height: 1.6;
+                margin-bottom: 1rem;
+            }
+            
+            .project-details {
+                color: var(--text-secondary);
+                line-height: 1.6;
+                margin-bottom: 1.5rem;
+            }
+
+            @media (max-width: 768px) {
+                .modal-project-image {
+                    max-height: 200px;
+                }
+                
+                .project-links {
+                    flex-direction: column;
+                }
+                
+                .project-links .btn {
+                    text-align: center;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
