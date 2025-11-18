@@ -2,12 +2,39 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Портфолио - Овсеп Узунян</title>
     <link rel="stylesheet" href="styles/modern-styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Стили для центрирования профиля на главной */
+        .hero-section .hero-content {
+            flex-direction: column;
+            text-align: center;
+        }
+        .hero-section .hero-visual {
+            order: 1;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+        .hero-section .hero-text {
+            order: 2;
+            text-align: center;
+        }
+        .hero-section .hero-buttons {
+            justify-content: center;
+        }
+        .profile-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    </style>
 </head>
 <body>
+    <a href="#main" class="skip-link">Перейти к основному содержимому</a>
+    
     <header class="header">
         <div class="container">
             <div class="header-content">
@@ -15,7 +42,7 @@
                     <div class="logo-icon">OU</div>
                     <h1>Овсеп Узунян</h1>
                 </div>
-                <nav class="nav">
+                <nav class="nav" aria-label="Основная навигация">
                     <ul>
                         <li><a href="index.html" class="nav-link active">Главная</a></li>
                         <li><a href="pages/projects.html" class="nav-link">Проекты</a></li>
@@ -27,27 +54,22 @@
         </div>
     </header>
 
-    <main>
+    <main id="main">
         <section class="hero-section">
             <div class="container">
                 <div class="hero-content">
-                    <div class="hero-text">
-                        <h1 class="hero-title">Привет! Я <span class="accent-text">Овсеп Узунян</span></h1>
-                        <p class="hero-subtitle">Студент группы <strong>ЭФБО-12-24</strong></p>
-                        <p class="hero-description">Увлекаюсь веб-разработкой и создаю интересные проекты. Люблю изучать новые технологии и решать сложные задачи.</p>
-                        <div class="hero-buttons">
-                            <a href="assets/resume.pdf" target="_blank" class="btn btn-primary">
-                                <span>📄 Посмотреть резюме</span>
-                            </a>
-                            <a href="#projects" class="btn btn-secondary">
-                                <span>👀 Смотреть проекты</span>
-                            </a>
-                        </div>
-                    </div>
+                    <!-- Фотка профиля теперь сверху и по центру -->
                     <div class="hero-visual">
                         <div class="profile-card">
                             <div class="profile-image">
-                                <img src="images/my-photo.jpg" alt="Овсеп Узунян" class="profile-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                                <picture>
+                                    <source media="(max-width: 480px)" srcset="images/profile-mobile.jpg">
+                                    <source media="(max-width: 768px)" srcset="images/profile-tablet.jpg">
+                                    <source media="(min-width: 769px)" srcset="images/profile-desktop.jpg">
+                                    <img src="images/profile-tablet.jpg" alt="Овсеп Узунян" class="profile-photo" 
+                                         width="200" height="200" fetchpriority="high"
+                                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                                </picture>
                                 <div class="image-placeholder" style="display: none;">🚀</div>
                             </div>
                             <div class="profile-stats">
@@ -64,6 +86,21 @@
                                     <span class="stat-label">Технологий</span>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Текст теперь под фоткой -->
+                    <div class="hero-text">
+                        <h1 class="hero-title">Привет! Я <span class="accent-text">Овсеп Узунян</span></h1>
+                        <p class="hero-subtitle">Студент группы <strong>ЭФБО-12-24</strong></p>
+                        <p class="hero-description">Увлекаюсь веб-разработкой и создаю интересные проекты. Люблю изучать новые технологии и решать сложные задачи.</p>
+                        <div class="hero-buttons">
+                            <a href="assets/resume.pdf" target="_blank" class="btn btn-primary">
+                                <span>📄 Посмотреть резюме</span>
+                            </a>
+                            <a href="#projects" class="btn btn-secondary">
+                                <span>👀 Смотреть проекты</span>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -121,7 +158,14 @@
                     <!-- Проект 1 - React E-Commerce -->
                     <div class="project-card">
                         <div class="project-image">
-                            <img src="images/ecommerce-project.jpg" alt="React E-Commerce Store" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <picture>
+                                <source media="(max-width: 480px)" srcset="images/project1-mobile.jpg">
+                                <source media="(max-width: 768px)" srcset="images/project1-tablet.jpg">
+                                <source media="(min-width: 769px)" srcset="images/project1-desktop.jpg">
+                                <img src="images/project1-tablet.jpg" alt="React E-Commerce Store" 
+                                     width="300" height="200" loading="lazy"
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            </picture>
                             <div style="background: linear-gradient(135deg, #667eea, #764ba2); height: 200px; display: none; align-items: center; justify-content: center; color: white; font-size: 3rem;">
                                 🛒
                             </div>
@@ -136,7 +180,14 @@
                     <!-- Проект 2 - Memory Card Game -->
                     <div class="project-card">
                         <div class="project-image">
-                            <img src="images/memory-game.jpg" alt="Memory Card Game" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <picture>
+                                <source media="(max-width: 480px)" srcset="images/project2-mobile.jpg">
+                                <source media="(max-width: 768px)" srcset="images/project2-tablet.jpg">
+                                <source media="(min-width: 769px)" srcset="images/project2-desktop.jpg">
+                                <img src="images/project2-tablet.jpg" alt="Memory Card Game" 
+                                     width="300" height="200" loading="lazy"
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            </picture>
                             <div style="background: linear-gradient(135deg, #9d50bb, #6e48aa); height: 200px; display: none; align-items: center; justify-content: center; color: white; font-size: 3rem;">
                                 🕹️
                             </div>
@@ -151,7 +202,14 @@
                     <!-- Проект 3 - Movie Search App -->
                     <div class="project-card">
                         <div class="project-image">
-                            <img src="images/movie-app.jpg" alt="Movie Search App" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <picture>
+                                <source media="(max-width: 480px)" srcset="images/project3-mobile.jpg">
+                                <source media="(max-width: 768px)" srcset="images/project3-tablet.jpg">
+                                <source media="(min-width: 769px)" srcset="images/project3-desktop.jpg">
+                                <img src="images/project3-tablet.jpg" alt="Movie Search App" 
+                                     width="300" height="200" loading="lazy"
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            </picture>
                             <div style="background: linear-gradient(135deg, #3494e6, #ec6ead); height: 200px; display: none; align-items: center; justify-content: center; color: white; font-size: 3rem;">
                                 🎬
                             </div>
@@ -215,93 +273,5 @@
     </footer>
 
     <script src="scripts/main.js"></script>
-
-    <style>
-        .features-section {
-            padding: 5rem 0;
-            background: var(--background-light);
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .feature-card {
-            background: var(--background-card);
-            padding: 2rem;
-            border-radius: var(--border-radius);
-            text-align: center;
-            border: 1px solid var(--border-color);
-            transition: var(--transition);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .feature-card h3 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
-
-        .feature-card p {
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-
-        /* Стили для фотографии профиля */
-        .profile-photo {
-            width: 200px;
-            height: 200px;
-            border-radius: var(--border-radius);
-            object-fit: cover;
-            border: 4px solid var(--background-card);
-            box-shadow: var(--shadow-xl);
-        }
-
-        .project-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-
-        .project-card:hover .project-image img {
-            transform: scale(1.05);
-        }
-
-        @media (max-width: 768px) {
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .feature-card {
-                padding: 1.5rem;
-            }
-
-            .profile-photo {
-                width: 150px;
-                height: 150px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .profile-photo {
-                width: 120px;
-                height: 120px;
-            }
-        }
-    </style>
 </body>
 </html>

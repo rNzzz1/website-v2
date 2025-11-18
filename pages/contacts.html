@@ -2,12 +2,14 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Контакты - Овсеп Узунян</title>
     <link rel="stylesheet" href="../styles/modern-styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <a href="#main" class="skip-link">Перейти к основному содержимому</a>
+    
     <header class="header">
         <div class="container">
             <div class="header-content">
@@ -15,7 +17,7 @@
                     <div class="logo-icon">OU</div>
                     <h1>Овсеп Узунян</h1>
                 </div>
-                <nav class="nav">
+                <nav class="nav" aria-label="Основная навигация">
                     <ul>
                         <li><a href="../index.html" class="nav-link">Главная</a></li>
                         <li><a href="projects.html" class="nav-link">Проекты</a></li>
@@ -27,7 +29,7 @@
         </div>
     </header>
 
-    <main>
+    <main id="main">
         <section class="contacts-page">
             <div class="container">
                 <div class="page-header">
@@ -40,24 +42,28 @@
                         <form class="contact-form" id="contactForm">
                             <div class="form-group">
                                 <label for="name">Имя *</label>
-                                <input type="text" id="name" name="name" placeholder="Ваше имя" required>
+                                <input type="text" id="name" name="name" placeholder="Ваше имя" required aria-describedby="name-hint">
+                                <small id="name-hint" class="visually-hidden">Пожалуйста, введите ваше настоящее имя</small>
                                 <span class="error-message" id="nameError"></span>
                             </div>
 
                             <div class="form-group">
                                 <label for="email">Email *</label>
-                                <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                                <input type="email" id="email" name="email" placeholder="your@email.com" required aria-describedby="email-hint">
+                                <small id="email-hint" class="visually-hidden">Мы отправим ответ на этот адрес</small>
                                 <span class="error-message" id="emailError"></span>
                             </div>
 
                             <div class="form-group">
                                 <label for="subject">Тема</label>
-                                <input type="text" id="subject" name="subject" placeholder="Тема сообщения">
+                                <input type="text" id="subject" name="subject" placeholder="Тема сообщения" aria-describedby="subject-hint">
+                                <small id="subject-hint" class="visually-hidden">Кратко опишите тему вашего сообщения</small>
                             </div>
 
                             <div class="form-group">
                                 <label for="message">Сообщение *</label>
-                                <textarea id="message" name="message" rows="6" placeholder="Ваше сообщение..." required></textarea>
+                                <textarea id="message" name="message" rows="6" placeholder="Ваше сообщение..." required aria-describedby="message-hint"></textarea>
+                                <small id="message-hint" class="visually-hidden">Опишите подробно ваш вопрос или предложение</small>
                                 <span class="error-message" id="messageError"></span>
                             </div>
 
@@ -75,7 +81,7 @@
                                 <div class="contact-icon">📧</div>
                                 <div class="contact-details">
                                     <strong>Email</strong>
-                                    <a href="mailto:ovsep@example.com">exe@example.com</a>
+                                    <a href="mailto:ovsep@example.com">ovsep@example.com</a>
                                 </div>
                             </div>
 

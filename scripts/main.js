@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeFilters();
     initializeForms();
     initializeNavigation();
+    initializeImageLoading();
 });
 
 // ==================== ИНИЦИАЛИЗАЦИЯ СТРАНИЦЫ ====================
@@ -39,6 +40,25 @@ function animateSkillBars() {
     });
 }
 
+// ==================== ЗАГРУЗКА ИЗОБРАЖЕНИЙ ====================
+
+function initializeImageLoading() {
+    // Lazy loading для изображений
+    const images = document.querySelectorAll('img[loading="lazy"]');
+    
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                img.classList.add('loaded');
+                imageObserver.unobserve(img);
+            }
+        });
+    });
+
+    images.forEach(img => imageObserver.observe(img));
+}
+
 // ==================== ФИЛЬТРАЦИЯ ПРОЕКТОВ ====================
 
 function initializeFilters() {
@@ -58,7 +78,8 @@ function initializeFilters() {
 
             // Фильтруем проекты
             projectCards.forEach(card => {
-                if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                const categories = card.getAttribute('data-category').split(' ');
+                if (filterValue === 'all' || categories.includes(filterValue)) {
                     card.style.display = 'block';
                     setTimeout(() => {
                         card.style.opacity = '1';
@@ -83,13 +104,25 @@ function initializeForms() {
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
         contactForm.addEventListener('submit', handleContactSubmit);
+        initializeFormAccessibility(contactForm);
     }
 
     // Форма дневника
     const diaryForm = document.getElementById('diaryForm');
     if (diaryForm) {
         diaryForm.addEventListener('submit', handleDiarySubmit);
+        initializeFormAccessibility(diaryForm);
     }
+}
+
+function initializeFormAccessibility(form) {
+    // Добавляем ARIA-атрибуты для доступности
+    const inputs = form.querySelectorAll('input, textarea, select');
+    inputs.forEach(input => {
+        if (input.required) {
+            input.setAttribute('aria-required', 'true');
+        }
+    });
 }
 
 function handleContactSubmit(e) {
@@ -126,6 +159,12 @@ function handleContactSubmit(e) {
     if (isValid) {
         showSuccessMessage(`Спасибо, ${name}! Ваше сообщение отправлено. Мы ответим на ${email} в ближайшее время.`);
         contactForm.reset();
+        
+        // Фокус на первую fieldset для скринридеров
+        const firstInput = contactForm.querySelector('input, textarea');
+        if (firstInput) {
+            firstInput.focus();
+        }
     }
 }
 
@@ -182,16 +221,24 @@ function addDiaryEntry(date, title, description, status) {
 }
 
 function updateStats() {
-    const statsValue = document.querySelector('.stat-value');
-    if (statsValue) {
-        const currentValue = parseInt(statsValue.textContent);
-        statsValue.textContent = currentValue + 1;
-    }
+    const completedItems = document.querySelectorAll('.timeline-item.completed').length;
+    const inProgressItems = document.querySelectorAll('.timeline-item.in-progress').length;
+    const totalItems = completedItems + inProgressItems;
+    const progress = totalItems > 0 ? Math.round((completedItems / totalItems) * 100) : 0;
+
+    // Обновляем статистику
+    const completedStat = document.querySelector('.stat-item:nth-child(1) .stat-value');
+    const inProgressStat = document.querySelector('.stat-item:nth-child(2) .stat-value');
+    const progressStat = document.querySelector('.stat-item:nth-child(3) .stat-value');
+
+    if (completedStat) completedStat.textContent = completedItems;
+    if (inProgressStat) inProgressStat.textContent = inProgressItems;
+    if (progressStat) progressStat.textContent = `${progress}%`;
 }
 
 // ==================== МОДАЛЬНЫЕ ОКНА ====================
 
-// Данные проектов
+// Данные проектов с адаптивными изображениями
 const projectsData = {
     project1: {
         title: 'React E-Commerce Store',
@@ -200,7 +247,8 @@ const projectsData = {
         details: 'Проект использует Commerce.js для управления продуктами и заказами, Stripe для обработки платежей. Реализована фильтрация товаров, поиск и система рейтингов.',
         technologies: ['React', 'Commerce.js', 'Stripe', 'Material-UI', 'React Router'],
         github: 'https://github.com/chetanverma16/react-ecommerce-template',
-        live: 'https://react-ecommerce-template.vercel.app'
+        live: 'https://react-ecommerce-template.vercel.app',
+        image: '../images/project1-tablet.jpg'
     },
     project2: {
         title: 'CSS Gradient Generator',
@@ -209,7 +257,8 @@ const projectsData = {
         details: 'Генерация линейных, радиальных и конических градиентов. Настройка цветов, углов и прозрачности. Экспорт готового CSS кода.',
         technologies: ['JavaScript', 'CSS3', 'Color Picker', 'Clipboard API'],
         github: 'https://github.com/ghosh/uiGradients',
-        live: 'https://uigradients.com'
+        live: 'https://uigradients.com',
+        image: '../images/project2-tablet.jpg'
     },
     project3: {
         title: 'Memory Card Game',
@@ -218,7 +267,8 @@ const projectsData = {
         details: 'Реализована логика совпадения карточек, таймер, система уровней сложности. Плавные анимации переворота карточек.',
         technologies: ['JavaScript', 'CSS3', 'CSS Animations', 'Game Logic'],
         github: 'https://github.com/taniarascia/memory',
-        live: 'https://taniarascia.github.io/memory'
+        live: 'https://taniarascia.github.io/memory',
+        image: '../images/project3-tablet.jpg'
     },
     project4: {
         title: 'Movie Search App',
@@ -227,7 +277,8 @@ const projectsData = {
         details: 'Поиск по названию, актерам, жанрам. Детальные страницы с актерским составом, рецензиями и рекомендациями.',
         technologies: ['React', 'OMDB API', 'React Router', 'Axios', 'Responsive Design'],
         github: 'https://github.com/amirhazizi/reactjs-movies-app',
-        live: 'https://reactjs-movies-app.netlify.app'
+        live: 'https://reactjs-movies-app.netlify.app',
+        image: '../images/project4-tablet.jpg'
     }
 };
 
@@ -238,38 +289,65 @@ function openModal(projectId) {
     if (!project || !modalBody) return;
 
     const htmlContent = `
-        <h2>${project.title}</h2>
-        <p class="project-category"><strong>Категория:</strong> ${project.category}</p>
-        <p class="project-description">${project.description}</p>
-        <p class="project-details"><strong>Детали реализации:</strong> ${project.details}</p>
-        <div class="technologies-section">
-            <strong>Использованные технологии:</strong>
-            <div class="technologies-list">
-                ${project.technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
-            </div>
+        <div class="modal-project-header">
+            <h2>${project.title}</h2>
+            <p class="project-category"><strong>Категория:</strong> ${project.category}</p>
         </div>
-        <div class="project-links">
-            <a href="${project.github}" target="_blank" class="btn btn-primary">GitHub</a>
-            <a href="${project.live}" target="_blank" class="btn btn-secondary">Живая версия</a>
+        <div class="modal-project-image">
+            <picture>
+                <source media="(max-width: 480px)" srcset="${project.image.replace('tablet', 'mobile')}">
+                <source media="(max-width: 768px)" srcset="${project.image}">
+                <source media="(min-width: 769px)" srcset="${project.image.replace('tablet', 'desktop')}">
+                <img src="${project.image}" alt="${project.title}" width="600" height="300" loading="lazy" onerror="this.style.display='none'">
+            </picture>
+        </div>
+        <div class="modal-project-content">
+            <p class="project-description">${project.description}</p>
+            <p class="project-details"><strong>Детали реализации:</strong> ${project.details}</p>
+            <div class="technologies-section">
+                <strong>Использованные технологии:</strong>
+                <div class="technologies-list">
+                    ${project.technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+                </div>
+            </div>
+            <div class="project-links">
+                <a href="${project.github}" target="_blank" class="btn btn-primary">GitHub</a>
+                <a href="${project.live}" target="_blank" class="btn btn-secondary">Живая версия</a>
+            </div>
         </div>
     `;
 
     modalBody.innerHTML = htmlContent;
     document.getElementById('projectModal').style.display = 'block';
+    
+    // Фокус на модальное окно для доступности
+    const modal = document.getElementById('projectModal');
+    modal.setAttribute('aria-hidden', 'false');
+    modal.querySelector('.close-modal').focus();
 }
 
 function closeModal() {
-    document.getElementById('projectModal').style.display = 'none';
+    const modal = document.getElementById('projectModal');
+    modal.style.display = 'none';
+    modal.setAttribute('aria-hidden', 'true');
 }
 
 function openDiaryModal() {
     document.getElementById('diaryModal').style.display = 'block';
+    document.getElementById('diaryModal').setAttribute('aria-hidden', 'false');
+    
+    // Фокус на первое поле формы
+    const firstInput = document.getElementById('entryDate');
+    if (firstInput) {
+        firstInput.focus();
+    }
 }
 
 function closeDiaryModal() {
     const modal = document.getElementById('diaryModal');
     if (modal) {
         modal.style.display = 'none';
+        modal.setAttribute('aria-hidden', 'true');
         const diaryForm = document.getElementById('diaryForm');
         if (diaryForm) {
             diaryForm.reset();
@@ -277,63 +355,23 @@ function closeDiaryModal() {
     }
 }
 
-// ==================== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ====================
-
-function showError(elementId, message) {
-    const errorElement = document.getElementById(elementId);
-    if (errorElement) {
-        errorElement.textContent = message;
-    }
-}
-
-function clearErrorMessages() {
-    const errorElements = document.querySelectorAll('.error-message');
-    errorElements.forEach(element => {
-        element.textContent = '';
-    });
-}
-
-function showSuccessMessage(message) {
-    // Создаем временное уведомление
-    const notification = document.createElement('div');
-    notification.className = 'success-notification';
-    notification.innerHTML = `
-        <div style="
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: var(--success-color);
-            color: white;
-            padding: 1rem 1.5rem;
-            border-radius: 8px;
-            box-shadow: var(--shadow-lg);
-            z-index: 3000;
-            animation: slideInRight 0.3s ease;
-        ">
-            ${message}
-        </div>
-    `;
-    
-    document.body.appendChild(notification);
-    
-    setTimeout(() => {
-        notification.remove();
-    }, 4000);
-}
+// ==================== НАВИГАЦИЯ ====================
 
 function initializeNavigation() {
     // Плавная прокрутка для якорных ссылок
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
+        if (anchor.getAttribute('href') !== '#') {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        }
     });
 
     // Обновление активной навигации при прокрутке
@@ -361,6 +399,56 @@ function updateActiveNavigation() {
     });
 }
 
+// ==================== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ====================
+
+function showError(elementId, message) {
+    const errorElement = document.getElementById(elementId);
+    if (errorElement) {
+        errorElement.textContent = message;
+        errorElement.setAttribute('role', 'alert');
+    }
+}
+
+function clearErrorMessages() {
+    const errorElements = document.querySelectorAll('.error-message');
+    errorElements.forEach(element => {
+        element.textContent = '';
+        element.removeAttribute('role');
+    });
+}
+
+function showSuccessMessage(message) {
+    // Создаем временное уведомление
+    const notification = document.createElement('div');
+    notification.className = 'success-notification';
+    notification.setAttribute('role', 'status');
+    notification.setAttribute('aria-live', 'polite');
+    notification.innerHTML = `
+        <div style="
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--success-color);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow-lg);
+            z-index: 3000;
+            animation: slideInRight 0.3s ease;
+        ">
+            ${message}
+        </div>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.remove();
+    }, 4000);
+}
+
+// ==================== ОБРАБОТЧИКИ СОБЫТИЙ ====================
+
 // Закрытие модальных окон при клике вне их
 window.addEventListener('click', function(event) {
     const projectModal = document.getElementById('projectModal');
@@ -382,7 +470,69 @@ document.addEventListener('keydown', function(event) {
     }
 });
 
-// Добавляем стили для уведомлений
+// Предотвращение потери данных при перезагрузке
+window.addEventListener('beforeunload', function(e) {
+    const contactForm = document.getElementById('contactForm');
+    const diaryForm = document.getElementById('diaryForm');
+    
+    // Проверяем только если формы существуют и изменены
+    if ((contactForm && isFormDirty(contactForm)) || (diaryForm && isFormDirty(diaryForm))) {
+        e.preventDefault();
+        e.returnValue = 'У вас есть несохраненные изменения. Вы уверены, что хотите уйти?';
+        return 'У вас есть несохраненные изменения. Вы уверены, что хотите уйти?';
+    }
+});
+
+// Улучшенная функция проверки изменений формы
+function isFormDirty(form) {
+    // Если форма скрыта (в модальном окне), не считаем ее измененной
+    if (form.closest('.modal') && form.closest('.modal').style.display !== 'block') {
+        return false;
+    }
+    
+    const inputs = form.querySelectorAll('input, textarea, select');
+    for (let input of inputs) {
+        // Игнорируем скрытые поля и кнопки
+        if (input.type === 'hidden' || input.type === 'submit' || input.type === 'button') {
+            continue;
+        }
+        
+        // Сравниваем текущее значение с исходным
+        if (input.type === 'checkbox' || input.type === 'radio') {
+            if (input.checked !== input.defaultChecked) {
+                return true;
+            }
+        } else {
+            if (input.value !== input.defaultValue) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+// Сбрасываем флаг изменений при отправке форм
+document.addEventListener('submit', function(e) {
+    const form = e.target;
+    if (form.id === 'contactForm' || form.id === 'diaryForm') {
+        // После отправки формы сбрасываем ее состояние
+        setTimeout(() => {
+            form.reset();
+            // Сбрасываем default значения
+            const inputs = form.querySelectorAll('input, textarea, select');
+            inputs.forEach(input => {
+                if (input.type === 'checkbox' || input.type === 'radio') {
+                    input.defaultChecked = input.checked;
+                } else {
+                    input.defaultValue = input.value;
+                }
+            });
+        }, 100);
+    }
+});
+
+// ==================== СТИЛИ ДЛЯ ДОПОЛНИТЕЛЬНЫХ ЭЛЕМЕНТОВ ====================
+
 const style = document.createElement('style');
 style.textContent = `
     @keyframes slideInRight {
@@ -438,6 +588,21 @@ style.textContent = `
         color: var(--text-secondary);
         line-height: 1.6;
         margin-bottom: 1.5rem;
+    }
+    
+    /* Улучшения для доступности */
+    @media (prefers-reduced-motion: reduce) {
+        * {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
+    }
+    
+    /* Фокус для клавиатурной навигации */
+    .skip-link:focus {
+        outline: 3px solid #2563eb;
+        outline-offset: 2px;
     }
 `;
 document.head.appendChild(style);

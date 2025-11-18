@@ -2,12 +2,14 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Дневник - Овсеп Узунян</title>
     <link rel="stylesheet" href="../styles/modern-styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <a href="#main" class="skip-link">Перейти к основному содержимому</a>
+    
     <header class="header">
         <div class="container">
             <div class="header-content">
@@ -15,7 +17,7 @@
                     <div class="logo-icon">OU</div>
                     <h1>Овсеп Узунян</h1>
                 </div>
-                <nav class="nav">
+                <nav class="nav" aria-label="Основная навигация">
                     <ul>
                         <li><a href="../index.html" class="nav-link">Главная</a></li>
                         <li><a href="projects.html" class="nav-link">Проекты</a></li>
@@ -27,7 +29,7 @@
         </div>
     </header>
 
-    <main>
+    <main id="main">
         <section class="diary-page">
             <div class="container">
                 <div class="page-header">
@@ -106,6 +108,15 @@
                                         <div class="progress-fill" style="width: 70%"></div>
                                     </div>
                                 </div>
+                                <div class="course-item">
+                                    <div class="course-header">
+                                        <span>JavaScript Advanced</span>
+                                        <span>60%</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 60%"></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -125,7 +136,7 @@
                                     <div class="stat-label">Общий прогресс</div>
                                 </div>
                                 <div class="stat-item">
-                                    <div class="stat-value">4</div>
+                                    <div class="stat-value">3</div>
                                     <div class="stat-label">Проекта создано</div>
                                 </div>
                             </div>
@@ -143,23 +154,27 @@
             <h2>Добавить запись в дневник</h2>
             <form id="diaryForm" class="diary-form">
                 <div class="form-group">
-                    <label for="entryDate">Дата</label>
-                    <input type="text" id="entryDate" name="entryDate" placeholder="Например: 20 дек" required>
+                    <label for="entryDate">Дата *</label>
+                    <input type="text" id="entryDate" name="entryDate" placeholder="Например: 20 дек" required aria-describedby="date-hint">
+                    <small id="date-hint" class="visually-hidden">Укажите дату в формате "число месяц"</small>
                 </div>
                 <div class="form-group">
-                    <label for="entryTitle">Название задачи</label>
-                    <input type="text" id="entryTitle" name="entryTitle" placeholder="Например: Создание портфолио" required>
+                    <label for="entryTitle">Название задачи *</label>
+                    <input type="text" id="entryTitle" name="entryTitle" placeholder="Например: Создание портфолио" required aria-describedby="title-hint">
+                    <small id="title-hint" class="visually-hidden">Краткое описание задачи или достижения</small>
                 </div>
                 <div class="form-group">
-                    <label for="entryDescription">Описание</label>
-                    <textarea id="entryDescription" name="entryDescription" rows="4" placeholder="Опишите задачу или достижение..." required></textarea>
+                    <label for="entryDescription">Описание *</label>
+                    <textarea id="entryDescription" name="entryDescription" rows="4" placeholder="Опишите задачу или достижение..." required aria-describedby="desc-hint"></textarea>
+                    <small id="desc-hint" class="visually-hidden">Подробное описание выполненной работы</small>
                 </div>
                 <div class="form-group">
                     <label for="entryStatus">Статус</label>
-                    <select id="entryStatus" name="entryStatus">
+                    <select id="entryStatus" name="entryStatus" aria-describedby="status-hint">
                         <option value="in-progress">⏳ В процессе</option>
                         <option value="completed">✓ Завершено</option>
                     </select>
+                    <small id="status-hint" class="visually-hidden">Выберите текущий статус задачи</small>
                 </div>
                 <button type="submit" class="btn btn-primary full-width">Добавить запись</button>
             </form>
@@ -178,7 +193,7 @@
                 </div>
                 <div class="footer-links">
                     <a href="contacts.html">Контакты</a>
-                    <a href="https://github.com">GitHub</a>
+                    <a href="https://github.com/rNzzz1" target="_blank">GitHub</a>
                 </div>
             </div>
             <div class="footer-bottom">
