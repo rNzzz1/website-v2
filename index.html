@@ -30,6 +30,92 @@
             flex-direction: column;
             align-items: center;
         }
+        /* Дополнительные стили для демонстрации object-fit */
+        .object-fit-demo {
+            padding: 5rem 0;
+            background: var(--background-light);
+        }
+        
+        .demo-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .demo-card {
+            background: var(--background-card);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+        
+        .demo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .demo-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            text-align: center;
+        }
+        
+        .demo-image-container {
+            width: 100%;
+            height: 200px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+        
+        .demo-image {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+        
+        .demo-description {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            text-align: center;
+        }
+        
+        .code-example {
+            background: var(--primary-dark);
+            color: #cbd5e1;
+            padding: 1rem;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            margin-top: 1rem;
+            overflow-x: auto;
+        }
+        
+        .property-name {
+            color: #7dd3fc;
+        }
+        
+        .property-value {
+            color: #bbf7d0;
+        }
+        
+        @media (max-width: 768px) {
+            .demo-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
@@ -58,7 +144,22 @@
         <section class="hero-section">
             <div class="container">
                 <div class="hero-content">
-                    <!-- Фотка профиля теперь сверху и по центру -->
+                    <!-- Текстовая часть -->
+                    <div class="hero-text">
+                        <h1 class="hero-title">Привет! Я <span class="accent-text">Овсеп Узунян</span></h1>
+                        <p class="hero-subtitle">Студент группы <strong>ЭФБО-12-24</strong></p>
+                        <p class="hero-description">Увлекаюсь веб-разработкой и создаю интересные проекты. Люблю изучать новые технологии и решать сложные задачи.</p>
+                        <div class="hero-buttons">
+                            <a href="assets/resume.pdf" target="_blank" class="btn btn-primary">
+                                <span>📄 Посмотреть резюме</span>
+                            </a>
+                            <a href="#projects" class="btn btn-secondary">
+                                <span>👀 Смотреть проекты</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Визуальная часть с профилем -->
                     <div class="hero-visual">
                         <div class="profile-card">
                             <div class="profile-image">
@@ -86,21 +187,6 @@
                                     <span class="stat-label">Технологий</span>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Текст теперь под фоткой -->
-                    <div class="hero-text">
-                        <h1 class="hero-title">Привет! Я <span class="accent-text">Овсеп Узунян</span></h1>
-                        <p class="hero-subtitle">Студент группы <strong>ЭФБО-12-24</strong></p>
-                        <p class="hero-description">Увлекаюсь веб-разработкой и создаю интересные проекты. Люблю изучать новые технологии и решать сложные задачи.</p>
-                        <div class="hero-buttons">
-                            <a href="assets/resume.pdf" target="_blank" class="btn btn-primary">
-                                <span>📄 Посмотреть резюме</span>
-                            </a>
-                            <a href="#projects" class="btn btn-secondary">
-                                <span>👀 Смотреть проекты</span>
-                            </a>
                         </div>
                     </div>
                 </div>
@@ -227,29 +313,47 @@
             </div>
         </section>
 
-        <section class="features-section">
+           <!-- ДЕМОНСТРАЦИЯ OBJECT-FIT -->
+           <section class="object-fit-demo">
             <div class="container">
-                <h2 class="section-title">Почему выбирают меня</h2>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">💻</div>
-                        <h3>Современные технологии</h3>
-                        <p>Использую актуальные фреймворки и инструменты для создания быстрых и надежных приложений</p>
+                <h2 class="section-title">Демонстрация свойства Object-fit</h2>
+                <p style="text-align: center; color: var(--text-secondary); max-width: 700px; margin: 0 auto 2rem;">
+                    Свойство CSS <code>object-fit</code> определяет, как содержимое замещаемого элемента должно заполнять свой контейнер.
+                </p>
+                
+                <div class="demo-grid">
+                    <div class="demo-card">
+                        <h3 class="demo-title">object-fit: cover</h3>
+                        <div class="demo-image-container">
+                            <img src="images/project2-tablet.jpg" alt="Пример object-fit: cover" class="demo-image" style="object-fit: cover;">
+                        </div>
+                        <p class="demo-description">
+                            Изображение сохраняет пропорции и заполняет весь контейнер. Если пропорции не совпадают, изображение обрезается.
+                        </p>
                     </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">📱</div>
-                        <h3>Адаптивный дизайн</h3>
-                        <p>Все проекты идеально отображаются на любых устройствах - от смартфонов до десктопов</p>
+                    
+                    <div class="demo-card">
+                        <h3 class="demo-title">object-fit: contain</h3>
+                        <div class="demo-image-container">
+                            <img src="images/project2-tablet.jpg" alt="Пример object-fit: contain" class="demo-image" style="object-fit: contain;">
+                        </div>
+                        <p class="demo-description">
+                            Изображение масштабируется, чтобы целиком поместиться в контейнер, сохраняя пропорции. Могут появиться пустые области.
+                        </p>
                     </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">⚡</div>
-                        <h3>Оптимизация</h3>
-                        <p>Уделяю внимание производительности и скорости загрузки для лучшего пользовательского опыта</p>
+                    
+                    <div class="demo-card">
+                        <h3 class="demo-title">object-fit: fill</h3>
+                        <div class="demo-image-container">
+                            <img src="images/project2-tablet.jpg" alt="Пример object-fit: fill" class="demo-image" style="object-fit: fill;">
+                        </div>
+                        <p class="demo-description">
+                            Изображение растягивается, чтобы заполнить контейнер полностью. Пропорции не сохраняются, что может привести к искажению.
+                        </p>
                     </div>
                 </div>
             </div>
         </section>
-    </main>
 
     <footer class="footer">
         <div class="container">
@@ -272,6 +376,47 @@
         </div>
     </footer>
 
-    <script src="scripts/main.js"></script>
+    <script>
+        // Простой скрипт для улучшения взаимодействия
+        document.addEventListener('DOMContentLoaded', function() {
+            // Анимация прогресс-баров при скролле
+            const skillBars = document.querySelectorAll('.skill-progress');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const progressBar = entry.target;
+                        const width = progressBar.style.width;
+                        progressBar.style.width = '0%';
+                        setTimeout(() => {
+                            progressBar.style.width = width;
+                        }, 300);
+                        observer.unobserve(progressBar);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            skillBars.forEach(bar => observer.observe(bar));
+            
+            // Обработка ошибок загрузки изображений
+            document.querySelectorAll('img').forEach(img => {
+                img.addEventListener('error', function() {
+                    if (this.nextElementSibling && this.nextElementSibling.classList.contains('image-placeholder')) {
+                        this.style.display = 'none';
+                        this.nextElementSibling.style.display = 'flex';
+                    }
+                });
+                
+                // Отметка загруженных изображений
+                if (img.complete) {
+                    img.classList.add('loaded');
+                } else {
+                    img.addEventListener('load', function() {
+                        this.classList.add('loaded');
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
