@@ -4,10 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Контакты - Овсеп Узунян</title>
+    <meta name="description" content="Свяжитесь с Овсепом Узуняном - студентом-разработчиком. Форма обратной связи, контактная информация и доступность.">
     <link rel="stylesheet" href="../styles/modern-styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Дополнительные стили для улучшения доступности */
+        /* Critical CSS - inline для ускорения загрузки */
         .required-mark {
             color: var(--accent-color);
             margin-left: 4px;
@@ -36,7 +39,6 @@
             text-align: center;
         }
         
-        /* Стили полей ввода как у карточек контактной информации */
         .contact-form input,
         .contact-form textarea {
             background: var(--background-secondary);
@@ -56,7 +58,6 @@
             opacity: 0.7;
         }
         
-        /* Убираем черную обводку и добавляем аккуратный стиль */
         .contact-form input:focus,
         .contact-form textarea:focus,
         .contact-form select:focus {
@@ -66,14 +67,12 @@
             box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
         }
         
-        /* Убираем обводку у других элементов */
         .social-link:focus,
         .btn:focus {
             outline: none;
             box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.3);
         }
         
-        /* Скрытие элементов для скринридеров */
         .visually-hidden {
             position: absolute !important;
             width: 1px;
@@ -86,7 +85,6 @@
             border: 0;
         }
         
-        /* Улучшенные индикаторы состояния */
         .contact-form input:invalid:not(:focus):not(:placeholder-shown),
         .contact-form textarea:invalid:not(:focus):not(:placeholder-shown) {
             border-color: var(--accent-color);
@@ -99,7 +97,6 @@
             background-color: rgba(5, 150, 105, 0.05);
         }
         
-        /* Стили для текста в полях ввода - делаем видимыми */
         .contact-form input,
         .contact-form textarea {
             color: var(--text-primary) !important;
@@ -107,7 +104,6 @@
             opacity: 1 !important;
         }
         
-        /* Убираем автозаполнение стилей браузера */
         .contact-form input:-webkit-autofill,
         .contact-form input:-webkit-autofill:hover,
         .contact-form input:-webkit-autofill:focus,
@@ -117,14 +113,12 @@
             transition: background-color 5000s ease-in-out 0s;
         }
         
-        /* Стили для textarea */
         .contact-form textarea {
             resize: vertical;
             min-height: 120px;
             line-height: 1.5;
         }
         
-        /* Стили для labels */
         .form-group label {
             font-weight: 500;
             color: var(--text-primary);
@@ -132,11 +126,35 @@
             display: block;
         }
         
-        /* Убираем обводку у fieldset */
         fieldset {
             border: none;
             margin: 0;
             padding: 0;
+        }
+
+        /* Оптимизация загрузки изображений */
+        .contact-icon {
+            font-size: 1.2rem;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Улучшение CLS */
+        .contacts-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        @media (max-width: 768px) {
+            .contacts-layout {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -300,6 +318,7 @@
                             <div class="social-grid">
                                 <a href="https://github.com/rNzzz1" 
                                    target="_blank" 
+                                   rel="noopener noreferrer"
                                    class="social-link github"
                                    aria-label="Мой профиль на GitHub (откроется в новой вкладке)">
                                     GitHub
@@ -324,7 +343,7 @@
                 </div>
                 <div class="footer-links">
                     <a href="contacts.html" aria-current="page">Контакты</a>
-                    <a href="https://github.com/rNzzz1" target="_blank" aria-label="GitHub (откроется в новой вкладке)">GitHub</a>
+                    <a href="https://github.com/rNzzz1" target="_blank" rel="noopener noreferrer" aria-label="GitHub (откроется в новой вкладке)">GitHub</a>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -334,7 +353,7 @@
     </footer>
 
     <script>
-        // Улучшенная валидация формы с поддержкой доступности
+        // Оптимизированный JavaScript для формы
         document.addEventListener('DOMContentLoaded', function() {
             const contactForm = document.getElementById('contactForm');
             const nameInput = document.getElementById('name');
@@ -344,44 +363,65 @@
             // Функция показа ошибки
             function showError(input, message) {
                 const errorElement = document.getElementById(input.id + '-error');
-                errorElement.textContent = message;
-                input.setAttribute('aria-invalid', 'true');
-                input.classList.add('error');
+                if (errorElement) {
+                    errorElement.textContent = message;
+                    input.setAttribute('aria-invalid', 'true');
+                    input.classList.add('error');
+                }
             }
             
             // Функция очистки ошибки
             function clearError(input) {
                 const errorElement = document.getElementById(input.id + '-error');
-                errorElement.textContent = '';
-                input.setAttribute('aria-invalid', 'false');
-                input.classList.remove('error');
+                if (errorElement) {
+                    errorElement.textContent = '';
+                    input.setAttribute('aria-invalid', 'false');
+                    input.classList.remove('error');
+                }
             }
             
-            // Валидация при вводе
-            nameInput.addEventListener('input', function() {
+            // Дебаунс для валидации
+            function debounce(func, wait) {
+                let timeout;
+                return function executedFunction(...args) {
+                    const later = () => {
+                        clearTimeout(timeout);
+                        func(...args);
+                    };
+                    clearTimeout(timeout);
+                    timeout = setTimeout(later, wait);
+                };
+            }
+            
+            // Валидация при вводе с дебаунсом
+            const validateName = debounce(function() {
                 if (this.value.length < 2) {
                     showError(this, 'Имя должно содержать минимум 2 символа');
                 } else {
                     clearError(this);
                 }
-            });
+            }, 300);
             
-            emailInput.addEventListener('input', function() {
+            const validateEmail = debounce(function() {
                 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                 if (!emailRegex.test(this.value)) {
                     showError(this, 'Пожалуйста, введите корректный email');
                 } else {
                     clearError(this);
                 }
-            });
+            }, 300);
             
-            messageInput.addEventListener('input', function() {
+            const validateMessage = debounce(function() {
                 if (this.value.length < 10) {
                     showError(this, 'Сообщение должно содержать минимум 10 символов');
                 } else {
                     clearError(this);
                 }
-            });
+            }, 300);
+            
+            nameInput.addEventListener('input', validateName);
+            emailInput.addEventListener('input', validateEmail);
+            messageInput.addEventListener('input', validateMessage);
             
             // Обработка отправки формы
             contactForm.addEventListener('submit', function(e) {
@@ -430,7 +470,9 @@
                     
                     // Удаляем сообщение через 5 секунд
                     setTimeout(() => {
-                        successMessage.remove();
+                        if (successMessage.parentNode) {
+                            successMessage.parentNode.removeChild(successMessage);
+                        }
                     }, 5000);
                 } else {
                     // Фокус на первое поле с ошибкой
@@ -456,7 +498,11 @@
                     resetMessage.textContent = 'Форма сброшена. Все поля очищены.';
                     
                     contactForm.parentNode.insertBefore(resetMessage, contactForm);
-                    setTimeout(() => resetMessage.remove(), 3000);
+                    setTimeout(() => {
+                        if (resetMessage.parentNode) {
+                            resetMessage.parentNode.removeChild(resetMessage);
+                        }
+                    }, 3000);
                 }
             });
         });
