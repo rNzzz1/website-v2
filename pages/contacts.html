@@ -6,79 +6,256 @@
     <title>Контакты - Овсеп Узунян</title>
     <link rel="stylesheet" href="../styles/modern-styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Дополнительные стили для улучшения доступности */
+        .required-mark {
+            color: var(--accent-color);
+            margin-left: 4px;
+        }
+        
+        .form-hint {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 0.25rem;
+            display: block;
+        }
+        
+        .field-error {
+            color: var(--accent-color);
+            font-size: 0.8rem;
+            margin-top: 0.25rem;
+            display: block;
+        }
+        
+        .success-message {
+            background: var(--success-color);
+            color: white;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        /* Стили полей ввода как у карточек контактной информации */
+        .contact-form input,
+        .contact-form textarea {
+            background: var(--background-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 0.75rem 1rem;
+            font-size: 0.9rem;
+            color: var(--text-primary) !important;
+            width: 100%;
+            transition: all 0.2s ease;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: var(--text-secondary);
+            opacity: 0.7;
+        }
+        
+        /* Убираем черную обводку и добавляем аккуратный стиль */
+        .contact-form input:focus,
+        .contact-form textarea:focus,
+        .contact-form select:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            background: var(--background-primary);
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+        }
+        
+        /* Убираем обводку у других элементов */
+        .social-link:focus,
+        .btn:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.3);
+        }
+        
+        /* Скрытие элементов для скринридеров */
+        .visually-hidden {
+            position: absolute !important;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        
+        /* Улучшенные индикаторы состояния */
+        .contact-form input:invalid:not(:focus):not(:placeholder-shown),
+        .contact-form textarea:invalid:not(:focus):not(:placeholder-shown) {
+            border-color: var(--accent-color);
+            background-color: rgba(220, 38, 38, 0.05);
+        }
+        
+        .contact-form input:valid:not(:focus):not(:placeholder-shown),
+        .contact-form textarea:valid:not(:focus):not(:placeholder-shown) {
+            border-color: var(--success-color);
+            background-color: rgba(5, 150, 105, 0.05);
+        }
+        
+        /* Стили для текста в полях ввода - делаем видимыми */
+        .contact-form input,
+        .contact-form textarea {
+            color: var(--text-primary) !important;
+            -webkit-text-fill-color: var(--text-primary) !important;
+            opacity: 1 !important;
+        }
+        
+        /* Убираем автозаполнение стилей браузера */
+        .contact-form input:-webkit-autofill,
+        .contact-form input:-webkit-autofill:hover,
+        .contact-form input:-webkit-autofill:focus,
+        .contact-form input:-webkit-autofill:active {
+            -webkit-text-fill-color: var(--text-primary) !important;
+            -webkit-box-shadow: 0 0 0px 1000px var(--background-secondary) inset !important;
+            transition: background-color 5000s ease-in-out 0s;
+        }
+        
+        /* Стили для textarea */
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 120px;
+            line-height: 1.5;
+        }
+        
+        /* Стили для labels */
+        .form-group label {
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        
+        /* Убираем обводку у fieldset */
+        fieldset {
+            border: none;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
 </head>
 <body>
     <a href="#main" class="skip-link">Перейти к основному содержимому</a>
     
-    <header class="header">
+    <header class="header" role="banner">
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <div class="logo-icon">OU</div>
+                    <div class="logo-icon" aria-hidden="true">OU</div>
                     <h1>Овсеп Узунян</h1>
                 </div>
-                <nav class="nav" aria-label="Основная навигация">
+                <nav class="nav" aria-label="Основная навигация" role="navigation">
                     <ul>
                         <li><a href="../index.html" class="nav-link">Главная</a></li>
                         <li><a href="projects.html" class="nav-link">Проекты</a></li>
                         <li><a href="diary.html" class="nav-link">Дневник</a></li>
-                        <li><a href="contacts.html" class="nav-link active">Контакты</a></li>
+                        <li><a href="contacts.html" class="nav-link active" aria-current="page">Контакты</a></li>
                     </ul>
                 </nav>
             </div>
         </div>
     </header>
 
-    <main id="main">
+    <main id="main" role="main">
         <section class="contacts-page">
             <div class="container">
                 <div class="page-header">
                     <h1 class="page-title">Свяжитесь со мной</h1>
-                    <p class="page-subtitle">Есть вопросы или предложения? Напишите мне!</p>
+                    <p class="page-subtitle">Есть вопросы или предложения? Напишите мне! Я отвечаю в течение 24 часов.</p>
                 </div>
 
                 <div class="contacts-layout">
-                    <div class="contact-form-section">
-                        <form class="contact-form" id="contactForm">
-                            <div class="form-group">
-                                <label for="name">Имя *</label>
-                                <input type="text" id="name" name="name" placeholder="Ваше имя" required aria-describedby="name-hint">
-                                <small id="name-hint" class="visually-hidden">Пожалуйста, введите ваше настоящее имя</small>
-                                <span class="error-message" id="nameError"></span>
-                            </div>
+                    <!-- Форма обратной связи -->
+                    <section class="contact-form-section" aria-labelledby="contact-form-title">
+                        <h2 id="contact-form-title" class="visually-hidden">Форма обратной связи</h2>
+                        
+                        <form class="contact-form" id="contactForm" novalidate aria-live="polite" aria-relevant="all">
+                            <fieldset>
+                                <legend class="visually-hidden">Контактная информация</legend>
+                                
+                                <div class="form-group">
+                                    <label for="name">
+                                        Имя
+                                        <span class="required-mark" aria-hidden="true">*</span>
+                                        <span class="visually-hidden">(обязательное поле)</span>
+                                    </label>
+                                    <input type="text" id="name" name="name" 
+                                           placeholder="Ваше имя" 
+                                           required 
+                                           aria-required="true"
+                                           aria-describedby="name-hint name-error">
+                                    <span id="name-hint" class="form-hint">Пожалуйста, введите ваше настоящее имя</span>
+                                    <span id="name-error" class="field-error" role="alert" aria-live="polite"></span>
+                                </div>
 
-                            <div class="form-group">
-                                <label for="email">Email *</label>
-                                <input type="email" id="email" name="email" placeholder="your@email.com" required aria-describedby="email-hint">
-                                <small id="email-hint" class="visually-hidden">Мы отправим ответ на этот адрес</small>
-                                <span class="error-message" id="emailError"></span>
-                            </div>
+                                <div class="form-group">
+                                    <label for="email">
+                                        Email
+                                        <span class="required-mark" aria-hidden="true">*</span>
+                                        <span class="visually-hidden">(обязательное поле)</span>
+                                    </label>
+                                    <input type="email" id="email" name="email" 
+                                           placeholder="your@email.com" 
+                                           required 
+                                           aria-required="true"
+                                           aria-describedby="email-hint email-error">
+                                    <span id="email-hint" class="form-hint">Мы отправим ответ на этот адрес</span>
+                                    <span id="email-error" class="field-error" role="alert" aria-live="polite"></span>
+                                </div>
+                            </fieldset>
 
-                            <div class="form-group">
-                                <label for="subject">Тема</label>
-                                <input type="text" id="subject" name="subject" placeholder="Тема сообщения" aria-describedby="subject-hint">
-                                <small id="subject-hint" class="visually-hidden">Кратко опишите тему вашего сообщения</small>
-                            </div>
+                            <fieldset>
+                                <legend class="visually-hidden">Тема сообщения</legend>
+                                
+                                <div class="form-group">
+                                    <label for="subject">Тема сообщения</label>
+                                    <input type="text" id="subject" name="subject" 
+                                           placeholder="Тема вашего сообщения"
+                                           aria-describedby="subject-hint">
+                                    <span id="subject-hint" class="form-hint">Кратко опишите тему вашего сообщения</span>
+                                </div>
+                            </fieldset>
 
-                            <div class="form-group">
-                                <label for="message">Сообщение *</label>
-                                <textarea id="message" name="message" rows="6" placeholder="Ваше сообщение..." required aria-describedby="message-hint"></textarea>
-                                <small id="message-hint" class="visually-hidden">Опишите подробно ваш вопрос или предложение</small>
-                                <span class="error-message" id="messageError"></span>
-                            </div>
+                            <fieldset>
+                                <legend class="visually-hidden">Текст сообщения</legend>
+                                
+                                <div class="form-group">
+                                    <label for="message">
+                                        Сообщение
+                                        <span class="required-mark" aria-hidden="true">*</span>
+                                        <span class="visually-hidden">(обязательное поле)</span>
+                                    </label>
+                                    <textarea id="message" name="message" rows="6" 
+                                              placeholder="Ваше сообщение..." 
+                                              required 
+                                              aria-required="true"
+                                              aria-describedby="message-hint message-error"></textarea>
+                                    <span id="message-hint" class="form-hint">Опишите подробно ваш вопрос или предложение</span>
+                                    <span id="message-error" class="field-error" role="alert" aria-live="polite"></span>
+                                </div>
+                            </fieldset>
 
                             <button type="submit" class="btn btn-primary full-width">
                                 <span>📨 Отправить сообщение</span>
                             </button>
                         </form>
-                    </div>
+                    </section>
 
-                    <div class="contact-info-section">
+                    <!-- Контактная информация -->
+                    <section class="contact-info-section" aria-labelledby="contact-info-title">
+                        <h2 id="contact-info-title" class="visually-hidden">Контактная информация</h2>
+                        
                         <div class="info-card">
                             <h3>Контактная информация</h3>
                             
                             <div class="contact-item">
-                                <div class="contact-icon">📧</div>
+                                <div class="contact-icon" aria-hidden="true">📧</div>
                                 <div class="contact-details">
                                     <strong>Email</strong>
                                     <a href="mailto:ovsep@example.com">ovsep@example.com</a>
@@ -86,7 +263,7 @@
                             </div>
 
                             <div class="contact-item">
-                                <div class="contact-icon">📱</div>
+                                <div class="contact-icon" aria-hidden="true">📱</div>
                                 <div class="contact-details">
                                     <strong>Телефон</strong>
                                     <a href="tel:+79991234567">+7 (999) 123-45-67</a>
@@ -94,7 +271,7 @@
                             </div>
 
                             <div class="contact-item">
-                                <div class="contact-icon">📍</div>
+                                <div class="contact-icon" aria-hidden="true">📍</div>
                                 <div class="contact-details">
                                     <strong>Адрес</strong>
                                     <span>Москва, Россия</span>
@@ -121,28 +298,45 @@
                         <div class="social-links">
                             <h3>Связь со мной</h3>
                             <div class="social-grid">
-                                <a href="https://github.com/rNzzz1" target="_blank" class="social-link github">GitHub</a>
+                                <a href="https://github.com/rNzzz1" 
+                                   target="_blank" 
+                                   class="social-link github"
+                                   aria-label="Мой профиль на GitHub (откроется в новой вкладке)">
+                                    GitHub
+                                </a>
+                                <a href="https://linkedin.com" 
+                                   target="_blank" 
+                                   class="social-link linkedin"
+                                   aria-label="Мой профиль на LinkedIn (откроется в новой вкладке)">
+                                    LinkedIn
+                                </a>
+                                <a href="https://telegram.org" 
+                                   target="_blank" 
+                                   class="social-link telegram"
+                                   aria-label="Написать мне в Telegram (откроется в новой вкладке)">
+                                    Telegram
+                                </a>
                             </div>
                         </div>
-                    </div>
+                    </section>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="footer">
+    <footer class="footer" role="contentinfo">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-info">
                     <div class="logo">
-                        <div class="logo-icon">OU</div>
+                        <div class="logo-icon" aria-hidden="true">OU</div>
                         <h3>Овсеп Узунян</h3>
                     </div>
                     <p>Студент-разработчик, создающий крутые проекты</p>
                 </div>
                 <div class="footer-links">
-                    <a href="contacts.html">Контакты</a>
-                    <a href="https://github.com/rNzzz1" target="_blank">GitHub</a>
+                    <a href="contacts.html" aria-current="page">Контакты</a>
+                    <a href="https://github.com/rNzzz1" target="_blank" aria-label="GitHub (откроется в новой вкладке)">GitHub</a>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -151,6 +345,133 @@
         </div>
     </footer>
 
-    <script src="../scripts/main.js"></script>
+    <script>
+        // Улучшенная валидация формы с поддержкой доступности
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactForm = document.getElementById('contactForm');
+            const nameInput = document.getElementById('name');
+            const emailInput = document.getElementById('email');
+            const messageInput = document.getElementById('message');
+            
+            // Функция показа ошибки
+            function showError(input, message) {
+                const errorElement = document.getElementById(input.id + '-error');
+                errorElement.textContent = message;
+                input.setAttribute('aria-invalid', 'true');
+                input.classList.add('error');
+            }
+            
+            // Функция очистки ошибки
+            function clearError(input) {
+                const errorElement = document.getElementById(input.id + '-error');
+                errorElement.textContent = '';
+                input.setAttribute('aria-invalid', 'false');
+                input.classList.remove('error');
+            }
+            
+            // Валидация при вводе
+            nameInput.addEventListener('input', function() {
+                if (this.value.length < 2) {
+                    showError(this, 'Имя должно содержать минимум 2 символа');
+                } else {
+                    clearError(this);
+                }
+            });
+            
+            emailInput.addEventListener('input', function() {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(this.value)) {
+                    showError(this, 'Пожалуйста, введите корректный email');
+                } else {
+                    clearError(this);
+                }
+            });
+            
+            messageInput.addEventListener('input', function() {
+                if (this.value.length < 10) {
+                    showError(this, 'Сообщение должно содержать минимум 10 символов');
+                } else {
+                    clearError(this);
+                }
+            });
+            
+            // Обработка отправки формы
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                let isValid = true;
+                
+                // Валидация имени
+                if (nameInput.value.length < 2) {
+                    showError(nameInput, 'Имя должно содержать минимум 2 символа');
+                    isValid = false;
+                }
+                
+                // Валидация email
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(emailInput.value)) {
+                    showError(emailInput, 'Пожалуйста, введите корректный email');
+                    isValid = false;
+                }
+                
+                // Валидация сообщения
+                if (messageInput.value.length < 10) {
+                    showError(messageInput, 'Сообщение должно содержать минимум 10 символов');
+                    isValid = false;
+                }
+                
+                if (isValid) {
+                    // Создаем сообщение об успехе
+                    const successMessage = document.createElement('div');
+                    successMessage.className = 'success-message';
+                    successMessage.setAttribute('role', 'status');
+                    successMessage.setAttribute('aria-live', 'polite');
+                    successMessage.innerHTML = `
+                        ✅ Спасибо, ${nameInput.value}! Ваше сообщение отправлено. 
+                        Мы ответим на ${emailInput.value} в течение 24 часов.
+                    `;
+                    
+                    // Вставляем сообщение перед формой
+                    contactForm.parentNode.insertBefore(successMessage, contactForm);
+                    
+                    // Фокус на сообщение об успехе для скринридеров
+                    successMessage.focus();
+                    
+                    // Сбрасываем форму
+                    contactForm.reset();
+                    
+                    // Удаляем сообщение через 5 секунд
+                    setTimeout(() => {
+                        successMessage.remove();
+                    }, 5000);
+                } else {
+                    // Фокус на первое поле с ошибкой
+                    const firstError = contactForm.querySelector('[aria-invalid="true"]');
+                    if (firstError) {
+                        firstError.focus();
+                    }
+                }
+            });
+            
+            // Обработка клавиши Escape для сброса формы
+            contactForm.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    contactForm.reset();
+                    // Очищаем все ошибки
+                    [nameInput, emailInput, messageInput].forEach(clearError);
+                    
+                    // Сообщаем пользователю о сбросе
+                    const resetMessage = document.createElement('div');
+                    resetMessage.className = 'success-message';
+                    resetMessage.setAttribute('role', 'status');
+                    resetMessage.setAttribute('aria-live', 'polite');
+                    resetMessage.textContent = 'Форма сброшена. Все поля очищены.';
+                    
+                    contactForm.parentNode.insertBefore(resetMessage, contactForm);
+                    setTimeout(() => resetMessage.remove(), 3000);
+                }
+            });
+        });
+    </script>
 </body>
 </html>
